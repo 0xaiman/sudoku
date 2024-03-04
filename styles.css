@@ -11,14 +11,21 @@ table{
     max-width: 150px;
     max-height: 150px;
 }
-td{
+input, td{
     height:50px;
     width: 50px;
     border: 1px solid black;
     font-size: 20px;
     text-align: center;
+    overflow: hidden;
 }
-td:hover{
+ /* Style the number input's spinner buttons */
+ input[type=number]::-webkit-inner-spin-button,
+ input[type=number]::-webkit-outer-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+ }
+ input:hover, td:hover{
     background-color: rgb(200, 200, 200);
     cursor: pointer;
 }
