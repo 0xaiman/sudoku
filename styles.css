@@ -12,8 +12,8 @@ table{
     max-height: 150px;
 }
 input, td{
-    height:50px;
-    width: 50px;
+    height:40px;
+    width: 40px;
     border: 1px solid black;
     font-size: 20px;
     text-align: center;
@@ -33,4 +33,31 @@ input, td{
 h1{
     text-align: center;
     font-size: 16px;
+}
+
+.button-div{
+    width:100%;
+    padding:0.6rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 450px;
+    margin: 0 auto;
+    gap:1rem;
+
+}
+button{
+    /* margin:0 auto; */
+    margin: 0 auto;
+    padding:4px;
+    width:50%;
+}
+
+#button-check{
+    background-color: rgb(130, 130, 252);
+}
+#button-reset{
+    background-color: rgb(205, 252, 130);
+
+
 }
