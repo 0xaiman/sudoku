@@ -15,19 +15,24 @@ return sudokuArray
 }
 
 // randomized loop untuk ubah kedudekan elemenyt dalam array
-function shuffleArray(array){
-    for(let i=array.length-1; i>0; i--){
-        const j = Math.floor(Math.random()*(i+1));
-        [array[i],array[j]]=[array[j],array[i]]
+function shuffleArray(array) {
+    
+    for (let i = array.length - 1; i > 0; i--) {
+        const m = Math.floor(Math.random() * (i + 1));
+        const n = Math.floor(Math.random() * (i + 1));
+        // [array[i], array[m]] = [array[m], array[i]];
+        [array[m], array[i]] = [array[i], array[m]];
+        [array[m], array[n]] = [array[n], array[m]];
 
     }
     return array;
 }
 
+
+
 //
 // function untuk check kalau ade duplicate dlm row generated sudoku array
 // kalau ade, call balik fungsion shuffle  array
-
 function checkValidRow(array){
     ///scans each row
 for(let i=0; i<9; i+=3){
@@ -54,6 +59,7 @@ if (uniqueEl.size === arrayHolderRow.length){
 
 // function untuk check kalau ade duplicate dlm column generated sudoku array
 // kalau ade, call balik fungsion shuffle  array
+// TODO: IMprove checking function so it wont crash the website
 function checkValidCol(array){
     ///scans each row
     for(let i=0; i<9; i+=3){
@@ -77,16 +83,6 @@ function checkValidCol(array){
 }
 
 
-
-// function generateRow(i){
-//     return `
-//     <tr id="row-${i}">
-//         <td><input type="text" maxlength="1" onkeypress="return /[0-9]/i.test(event.key)" id="cell-${i}-${}"/></td>
-//         <td><input type="text" maxlength="1" onkeypress="return /[0-9]/i.test(event.key)" id="cell-${i}-${}"/></td>
-//         <td><input type="text" maxlength="1" onkeypress="return /[0-9]/i.test(event.key)" id="cell-${i}-${}"/></td>
-//     </tr>
-//     `;
-// }
 
 const boxes = document.querySelectorAll(".box");
 
@@ -165,20 +161,29 @@ function checkAnswer(){
     console.log('checkAnswer is working')
     console.log("userAnswer is", userAnswer );
     console.log("sudokuArray is", sudokuArray );
+    let inputs = document.querySelectorAll(`input[type="text"]`);
+    inputs.forEach(input=>{
+        input.style.backgroundColor = `white`;
+        
+    })
     
     for(let i=0;i<9;i++){
         for(let j=0;j<9;j++){
             let input = document.getElementById(`cell-${i}-${j}`);
 
             if(userAnswer[i][j]!==sudokuArray[i][j]){
-                input.style.backgroundColor = `red`;
+                input.style.backgroundColor = `salmon`;
+            }else{
+                if(input.disabled!==true){
+                input.style.backgroundColor = `lightgreen`;
+                }
+
             }
         }
     }
 
     for(let i=0;i<9;i++){
         for(let j=0;j<9;j++){
-            let input = document.getElementById(`cell-${i}-${j}`);
 
             if(userAnswer[i][j]!==sudokuArray[i][j]){
                 return false;
@@ -229,6 +234,7 @@ function clueStart(sudokuArray){
             if(random%2!==0){
                 // input.value = `OK`
                 input.value = `${sudokuArray[i][j]}`
+                 input.disabled = true;
 
             }else{
                 // input.value = ``
