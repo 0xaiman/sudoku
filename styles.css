@@ -1,3 +1,11 @@
+html{
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .container{
     display: grid;
     grid-template-columns: auto auto auto;
@@ -11,6 +19,8 @@ table{
     max-width: 150px;
     max-height: 150px;
 }
+
+
 input, td{
     height:40px;
     width: 40px;
@@ -19,6 +29,19 @@ input, td{
     text-align: center;
     overflow: hidden;
 }
+@media only screen and (max-width: 768px) {
+    table{
+     max-width: 100px;
+     max-height: 100px;
+ 
+    } 
+    input, td{
+     height:28px;
+     width: 28px;
+     font-size: 16px;
+ 
+ }
+ }
  /* Style the number input's spinner buttons */
  input[type=number]::-webkit-inner-spin-button,
  input[type=number]::-webkit-outer-spin-button {
